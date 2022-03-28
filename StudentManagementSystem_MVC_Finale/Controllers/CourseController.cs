@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StudentManagementSystem_MVC_Finale.Models;
+using StudentManagementSystem_Web_API_Finale.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

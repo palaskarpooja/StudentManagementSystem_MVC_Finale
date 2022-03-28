@@ -1,11 +1,13 @@
-﻿using System;
+﻿
+using StudentManagementSystem_Web_API_Finale.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace StudentManagementSystem_MVC_Finale.Models
 {
-    public class Course
+    public partial class Course
     {
         public Course()
         {
@@ -23,4 +25,3 @@ namespace StudentManagementSystem_MVC_Finale.Models
         public virtual ICollection<Feedback> Feedbacks { get; set; }
     }
 }
-
