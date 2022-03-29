@@ -52,9 +52,36 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult AddCourse()
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task <IActionResult> AddCourse(Course course)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(course), Encoding.UTF8, "application/json");
+                string endpoint = Baseurl + "api/Course";
+
+                using (var Response = await client.PostAsync(endpoint, content))
+                {
+                    if (Response.StatusCode == HttpStatusCode.OK)
+                    {
+                        TempData["Course"] = JsonConvert.SerializeObject(course);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.Clear();
+                        ModelState.AddModelError(string.Empty, "Could not add course");
+                        return View();
+
+                    }
+                }
+            }
+        }
+
     }
 }

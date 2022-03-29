@@ -99,7 +99,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-                string endpoint = Baseurl + "api/Register/validate";
+                string endpoint = Baseurl + "api/Register/Validate";
 
 
 
