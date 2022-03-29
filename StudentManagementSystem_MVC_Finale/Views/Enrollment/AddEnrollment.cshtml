@@ -1,0 +1,61 @@
+﻿@model StudentManagementSystem_Web_API_Finale.Models.Enrollment
+
+@{
+    ViewData["Title"] = "AddEnrollment";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@*<h4>Enrollment</h4>
+<hr />
+<div class="row">*@
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Default form</h4>
+                        <p class="card-description">
+                            Basic form layout
+                        </p>
+                        
+                            <form asp-action="AddEnrollment">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="Id" class="control-label"></label>
+                                    <input asp-for="Id" class="form-control" />
+                                    <span asp-validation-for="Id" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="StudentId" class="control-label"></label>
+                                    <input asp-for="StudentId" class="form-control" />
+                                    <span asp-validation-for="StudentId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CourseId" class="control-label"></label>
+                                    <select asp-for="CourseId" class="form-control" asp-items="ViewBag.CourseId"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CreatedDate" class="control-label"></label>
+                                    <input asp-for="CreatedDate" class="form-control" />
+                                    <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                                @ViewBag.Message
+                            </form>
+                        
+                    </div>
+
+                    <div>
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+
+                 </div>
+        
+            </div>
+        </div>
+    </div>
+</div>

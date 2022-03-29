@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using StudentManagementSystem_MVC_Finale.Models;
 using StudentManagementSystem_Web_API_Finale.Models;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
     public class RegisterController : Controller
     {
         string Baseurl = "https://localhost:44341/";
+        private object user;
 
         public IActionResult Index()
         {
@@ -50,37 +53,72 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
             }
         }
 
-            [HttpPost]
+        [HttpPost]
 
-            public async Task<IActionResult> Create(StudentRegistration studentRegistration)
+        public async Task<IActionResult> AddStudent(StudentRegistration studentRegistration)
+        {
+            studentRegistration.CreatedDate = DateTime.Now;
+
+            using (HttpClient client = new HttpClient())
             {
-                using (HttpClient client = new HttpClient())
+                StringContent content = new StringContent(JsonConvert.SerializeObject(studentRegistration), Encoding.UTF8, "application/json");
+                string endpoint = Baseurl + "api/Register";
+
+                using (var Response = await client.PostAsync(endpoint, content))
                 {
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(studentRegistration), Encoding.UTF8, "application/json");
-                    string endpoint = Baseurl + "api/Register";
-
-                    using (var Response = await client.PostAsync(endpoint, content))
+                    if (Response.StatusCode == HttpStatusCode.OK)
                     {
-                        if (Response.StatusCode == HttpStatusCode.OK)
-                        {
-                            TempData["StudentRegistration"] = JsonConvert.SerializeObject(studentRegistration);
-                            return RedirectToAction("Index");
-                        }
-                        else
-                        {
-                            ModelState.Clear();
-                            ModelState.AddModelError(string.Empty, "Could not add department");
-                            return View();
-
-                        }
+                        TempData["StudentRegistration"] = JsonConvert.SerializeObject(studentRegistration);
+                        return RedirectToAction("Index");
                     }
+                    else
+                    {
+                        ModelState.Clear();
+                        ModelState.AddModelError(string.Empty, "Could not add Student");
+                        return View();
 
-
-
+                    }
                 }
 
+
             }
-        
+
+            
+        }
+
+        [HttpGet]
+
+        public IActionResult StudentLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task <IActionResult> StudentLogin(StudentLogin studentLogin)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+                string endpoint = Baseurl + "api/Register/validate";
+
+
+
+                using (var Response = await client.PostAsync(endpoint, content))
+                {
+                    string token = await Response.Content.ReadAsStringAsync();
+                    if (token == "User not found")
+                    {
+                        ViewData["message"] = "Invalid Credentials";
+                        return View();
+
+
+                    }
+                    HttpContext.Session.SetString("Jwtoken", token);
+                }
+                return Redirect("~/student/index");
+            }
+        }
+
     }
 
 }
