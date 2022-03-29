@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using StudentManagementSystem_MVC_Finale.Data;
 
 namespace StudentManagementSystem_MVC_Finale
 {
@@ -24,6 +26,10 @@ namespace StudentManagementSystem_MVC_Finale
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(50));
+
+            services.AddDbContext<StudentManagementSystem_MVC_FinaleContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("StudentManagementSystem_MVC_FinaleContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
