@@ -28,6 +28,8 @@ namespace StudentManagementSystem_MVC_Finale
             services.AddControllersWithViews();
             services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(50));
 
+            
+
             services.AddDbContext<StudentManagementSystem_MVC_FinaleContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("StudentManagementSystem_MVC_FinaleContext")));
         }
@@ -50,13 +52,15 @@ namespace StudentManagementSystem_MVC_Finale
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index1}/{id?}");
             });
         }
     }

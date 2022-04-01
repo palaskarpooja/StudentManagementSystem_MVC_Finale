@@ -33,7 +33,11 @@
           }
         }
       }
-    }
+      }
+
+      $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+      })
 
     var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
     $('.nav li a', sidebar).each(function() {

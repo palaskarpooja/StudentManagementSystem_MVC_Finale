@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem_MVC_Finale.Models
 {
-    public class Course
+    public class TodaysEnrollment
     {
-        public byte Id { get; set; }
         public string Name { get; set; }
-        public string Duration { get; set; }
-        public string Description { get; set; }
-        public string Fees { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public long ContactNumber { get; set; }
     }
 }

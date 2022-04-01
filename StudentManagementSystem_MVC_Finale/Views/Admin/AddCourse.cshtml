@@ -1,11 +1,9 @@
 ﻿@model StudentManagementSystem_MVC_Finale.Models.Course
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "AddCourse";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-
-
 
 
 
@@ -14,12 +12,18 @@
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
-                    <h4>Edit Course</h4>
                     <div class="card-body">
-
-                        <form asp-action="Edit">
+                        <h4 class="card-title">Default form</h4>
+                        <p class="card-description">
+                            Add Courses
+                        </p>
+                        <form asp-action="AddCourse">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <input type="hidden" asp-for="Id" />
+                            <div class="form-group">
+                                <label asp-for="Id" class="control-label"></label>
+                                <input asp-for="Id" class="form-control" />
+                                <span asp-validation-for="Id" class="text-danger"></span>
+                            </div>
                             <div class="form-group">
                                 <label asp-for="Name" class="control-label"></label>
                                 <input asp-for="Name" class="form-control" />
@@ -41,7 +45,7 @@
                                 <span asp-validation-for="Fees" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Save" class="btn btn-primary" />
+                                <input type="submit" value="Create" class="btn btn-primary" />
                             </div>
                         </form>
                     </div>
@@ -50,7 +54,6 @@
                 <div>
                     <a asp-action="Index">Back to List</a>
                 </div>
-
             </div>
         </div>
     </div>

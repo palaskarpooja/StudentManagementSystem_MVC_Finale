@@ -24,7 +24,7 @@
 
 <body>
 
-    <div class="container-scroller">
+    @*<div class="container-scroller">
         <div class="row p-0 m-0 proBanner" id="proBanner">
             <div class="col-md-12 p-0 m-0">
                 <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
@@ -42,19 +42,20 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
 
-                <a class="navbar-brand brand-logo me-5" href="index.html"><img src="~/img/faces/logo.svg" class="me-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="~/img/faces/logo-mini.svg" alt="logo" /></a>
-            </div>
+@*                <a class="navbar-brand brand-logo me-5" href="index.html"><img src="~/img/faces/logo.svg" class="me-2" alt="logo" /></a>
+*@                <b><h2>SMS</h2></b>
+@*                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="" alt="logo" /></a>
+*@            </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                @*<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="ti-view-list"></span>
-                </button>
-                <ul class="navbar-nav mr-lg-2">
+                </button>*@
+                @*<ul class="navbar-nav mr-lg-2">
                     <li class="nav-item nav-search d-none d-lg-block">
                         <div class="input-group">
                             <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -65,7 +66,7 @@
                             <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
                         </div>
                     </li>
-                </ul>
+                </ul>*@
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item dropdown me-1">
                         <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-bs-toggle="dropdown">
@@ -114,7 +115,7 @@
                             </a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    @*<li class="nav-item dropdown">
                         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
                             <i class="ti-bell mx-0"></i>
                             <span class="count"></span>
@@ -161,26 +162,18 @@
                                 </div>
                             </a>
                         </div>
-                    </li>
-                    <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                            <img src="~/img/faces/face28.jpg" alt="profile" />
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item">
-                                <i class="ti-settings text-primary"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item">
-                                <i class="ti-power-off text-primary"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
+                    </li>*@
+                <li class="nav-item nav-profile dropdown">
+                    <img src="~/img/faces/face28.jpg" alt="profile" />
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+                        Logout
+                    </a>
+                    
+                </li>
                 </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                @*<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                     <span class="ti-view-list"></span>
-                </button>
+                </button>*@
             </div>
         </nav>
         <!-- partial -->
@@ -188,14 +181,14 @@
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
+                    @*<li class="nav-item">
+            <a class="nav-link" href="index.html">
+                <i class="ti-shield menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>*@
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="ti-shield menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="getstudentdetails">
+                        <a class="nav-link" asp-action="getstudentdetails" asp-controller="admin">
                             <i class="ti-view-list-alt menu-icon"></i>
                             <span class="menu-title">Student Details</span>
                         </a>
@@ -207,41 +200,43 @@
             </ul>
         </div>*@
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/pages/forms/basic_elements.html">
-                            <i class="ti-layout-list-post menu-icon"></i>
-                            <span class="menu-title">Form elements</span>
-                        </a>
-                    </li>
+                    @*<li class="nav-item">
+            <a class="nav-link" href="~/pages/forms/basic_elements.html">
+                <i class="ti-layout-list-post menu-icon"></i>
+                <span class="menu-title">Form elements</span>
+            </a>
+        </li>*@
+
 
                     <li class="nav-item">
-                        <a class="nav-link" href="getstudentenrollment">
-                            <i class="ti-view-list-alt menu-icon"></i>
-                            <span class="menu-title">Student Enrollment</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" asp-action="getcourselist" asp-controller="admin">
                             <i class="ti-pie-chart menu-icon"></i>
                             <span class="menu-title">Enroll Courses</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="getcurrentenrollment">
+                        <a class="nav-link" asp-action="todaysenrollment" asp-controller="enrollment">
                             <i class="ti-star menu-icon"></i>
                             <span class="menu-title">Todays Course Enrollment</span>
                         </a>
+
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="~/pages/icons/themify.html">
+                        <a class="nav-link" asp-action="index" asp-controller="course">
                             <i class="ti-star menu-icon"></i>
-                            <span class="menu-title">Manage Courses</span>
+                            <span class="menu-title"> Courses Details</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="~/pages/icons/themify.html">
+                        <a class="nav-link" asp-action="viewcollege" asp-controller="college">
                             <i class="ti-star menu-icon"></i>
-                            <span class="menu-title">Manage Colleges</span>
+                            <span class="menu-title"> Colleges Details</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="viewfeedback" asp-controller="feedback">
+                            <i class="ti-star menu-icon"></i>
+                            <span class="menu-title"> View Student Feedback</span>
                         </a>
                     </li>
                     @*< <li class="nav-item">
@@ -260,12 +255,12 @@
                 </ul>
             </div>
         </li>*@
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/documentation/documentation.html">
-                            <i class="ti-write menu-icon"></i>
-                            <span class="menu-title">Documentation</span>
-                        </a>
-                    </li>
+                    @*<li class="nav-item">
+            <a class="nav-link" href="~/documentation/documentation.html">
+                <i class="ti-write menu-icon"></i>
+                <span class="menu-title">Documentation</span>
+            </a>
+        </li>*@
                 </ul>
             </nav>
             <!-- partial -->
@@ -276,11 +271,17 @@
 
             <!-- main-panel ends -->
         </div>
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2021</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Only the best <a href="https://www.bootstrapdash.com/" target="_blank"> Bootstrap dashboard </a> templates</span>
-            </div>
+        <footer id="footer">
+            <div class="container">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <div class="copyright" style="text-align-last:auto">
+                        &copy; Copyright <strong><span>Student Management System</span></strong>. All Rights Reserved
+                    </div>
+                    
+                    @*<span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2021</span>
+                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Only the best <a href="https://www.bootstrapdash.com/" target="_blank"> Bootstrap dashboard </a> templates</span>*@
+                </div>
+                </div>
         </footer>
         <!-- page-body-wrapper ends -->
     </div>

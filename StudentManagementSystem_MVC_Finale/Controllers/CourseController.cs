@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StudentManagementSystem_MVC_Finale.Models;
 using StudentManagementSystem_Web_API_Finale.Models;
@@ -16,7 +17,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
 {
     public class CourseController : Controller
     {
-       
+
         string Baseurl = "https://localhost:44341/";
 
         public async Task<ActionResult> Index()
@@ -47,9 +48,48 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
                 return View(PInfo);
 
             }
-            
+
 
         }
+
+
+        [HttpGet("MyCourses")]
+        public async Task<ActionResult> MyCourses()
+
+        {
+
+            List<Course> PInfo = new List<Course>();
+
+
+            using (var client = new HttpClient())
+            {
+                //Passing service base url
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient
+                HttpResponseMessage Res = await client.GetAsync("api/courses/mycourse/" + 2);
+                //Checking the response is successful or not which is sent using HttpClient
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api
+                    var Response = Res.Content.ReadAsStringAsync().Result;
+                    //Deserializing the response recieved from web api and storing into the Employee list
+                    PInfo = JsonConvert.DeserializeObject<List<Course>>(Response);
+                    
+/*                    HttpContext.Session.SetString("Id", MyCourses.Id);*/
+
+                }
+                //returning the employee list to view
+                return View(PInfo);
+
+            }
+
+
+        }
+
+
 
         [HttpGet]
         public IActionResult AddCourse()
@@ -58,7 +98,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
         }
 
         [HttpPost]
-        public async Task <IActionResult> AddCourse(Course course)
+        public async Task<IActionResult> AddCourse(Course course)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -87,7 +127,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
         public async Task<ActionResult> Edit(byte id)
         {
             Course PInfo = new Course();
-         
+
             using (var client = new HttpClient())
             {
                 //Passing service base url
@@ -96,7 +136,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
 
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage Res = await client.GetAsync("api/courses" + id);
+                HttpResponseMessage Res = await client.GetAsync("api/course/" + id);
                 //HttpResponseMessage Res1 = await client.GetAsync("api/HospitalEmploy/" + id);
 
                 if (Res.IsSuccessStatusCode)
@@ -105,22 +145,24 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
                     var Response = Res.Content.ReadAsStringAsync().Result;
 
                     PInfo = JsonConvert.DeserializeObject<Course>(Response);
-               }
+                }
                 return View(PInfo);
             }
 
         }
 
 
+
+
         [HttpPost]
         public async Task<IActionResult> Edit(byte id, Course course)
         {
 
-         using (HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
 
                 StringContent content = new StringContent(JsonConvert.SerializeObject(course), Encoding.UTF8, "application/json");
-                string endpoint = this.Baseurl + "api/Courses/" + id;
+                string endpoint = this.Baseurl + "api/Course/PutCourse/" + id;
                 using (var Response = await client.PutAsync(endpoint, content))
                 {
                     if (Response.IsSuccessStatusCode)
@@ -139,5 +181,13 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
             }
         }
 
+
+
+
+
+
+
     }
+
+    
 }
