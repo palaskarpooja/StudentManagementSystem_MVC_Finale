@@ -41,14 +41,13 @@
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
                         <img src="~/img/faces/face28.jpg" alt="profile" />
-                        <a  asp-action="Index1" asp-controller="Home"  id="profileDropdown">
-                            Logout
-                        </a>
+                        @*<a asp-action="Index1" asp-controller="Home" id="navbar">
+                            <h4>Logout</h4>
+                        </a>*@
                         
-@*                            <input type="submit" value="Logout" asp-action="Index1" asp-controller="Home" class="btn btn-primary" />
-*@                        
 
                     </li>
+                    
                 </ul>
                 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                     <span class="ti-view-list"></span>
@@ -70,7 +69,7 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-action="edit" asp-controller="student">
                             <i class="ti-pie-chart menu-icon"></i>
-                            <span class="menu-title">View Profile</span>
+                            <span class="menu-title">My Profile</span>
                         </a>
                     </li>
 
@@ -87,7 +86,12 @@
                             <span class="menu-title">Add Feedback</span>
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index1" asp-controller="Home">
+                            <i class="ti-view-list-alt menu-icon"></i>
+                            <span class="menu-title">Logout</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- partial -->

@@ -70,8 +70,8 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
                     if (Response.StatusCode == HttpStatusCode.OK)
                     {
                         TempData["StudentRegistration"] = JsonConvert.SerializeObject(studentRegistration);
-                        return RedirectToAction("Index");
-                        
+                        return RedirectToAction("Index1", "Home");
+
                     }
                     else
                     {
@@ -80,6 +80,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
                         return View();
 
                     }
+                   
                      
                 }
 
@@ -113,9 +114,11 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
                     {
                         ViewData["message"] = "Invalid Credentials";
                         return View();
-
+                        
 
                     }
+
+                   
                     HttpContext.Session.SetString("Jwtoken", token);
                     HttpContext.Session.SetString("username", studentLogin.Username);
                 }

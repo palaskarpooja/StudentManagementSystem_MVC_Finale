@@ -207,6 +207,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
                     {
                         TempData["Course"] = JsonConvert.SerializeObject(course);
                         return RedirectToAction("Index");
+                        ViewData["Message"] = "Successfully added";
                     }
                     else
                     {

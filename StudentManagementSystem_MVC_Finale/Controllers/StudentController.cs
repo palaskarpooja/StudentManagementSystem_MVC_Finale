@@ -61,7 +61,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
         {
             Random random = new Random();
             enrollment.Id = random.Next(100, 1000);
-            enrollment.StudentId = 2;
+            enrollment.StudentId = 12;
             enrollment.CourseId = id;
             enrollment.CreatedDate = DateTime.Now;
 
@@ -103,6 +103,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
                 //Define request data format
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient
+                
                 HttpResponseMessage Res = await client.GetAsync("api/courses");
                 //Checking the response is successful or not which is sent using HttpClient
                 if (Res.IsSuccessStatusCode)

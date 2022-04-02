@@ -39,14 +39,14 @@
                 <ul class="navbar-nav navbar-nav-right">
                    
                     
-                <li class="nav-item nav-profile dropdown">
-                    <img src="~/img/faces/face28.jpg" alt="profile" />
-                    <a  asp-action="Index1" asp-controller="Home" id="profileDropdown">
-                        Logout
-                    </a>
-                    
-                </li>
-                </ul>
+                    <li class="nav-item nav-profile dropdown">
+                        <img src="~/img/faces/face28.jpg" alt="profile" />
+                        @*<a  asp-action="Index1" asp-controller="Home" id="profileDropdown">
+            Logout
+        </a>*@
+
+                    </li>
+</ul>
                 
             </div>
         </nav>
@@ -55,14 +55,14 @@
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" asp-action="getstudentdetails" asp-controller="admin">
                             <i class="ti-view-list-alt menu-icon"></i>
                             <span class="menu-title">Student Details</span>
                         </a>
                     </li>
-                    
+
 
 
                     <li class="nav-item">
@@ -74,7 +74,7 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-action="todaysenrollment" asp-controller="enrollment">
                             <i class="ti-star menu-icon"></i>
-                            <span class="menu-title">Todays Course Enrollment</span>
+                            <span class="menu-title">Todays Enrollment</span>
                         </a>
 
                     </li>
@@ -93,10 +93,16 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-action="viewfeedback" asp-controller="feedback">
                             <i class="ti-star menu-icon"></i>
-                            <span class="menu-title"> View Student Feedback</span>
+                            <span class="menu-title"> Student Feedback</span>
                         </a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index1" asp-controller="Home">
+                            <i class="ti-view-list-alt menu-icon"></i>
+                            <span class="menu-title">Logout</span>
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
             <!-- partial -->
