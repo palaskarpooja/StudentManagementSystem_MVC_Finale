@@ -71,6 +71,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
                     {
                         TempData["StudentRegistration"] = JsonConvert.SerializeObject(studentRegistration);
                         return RedirectToAction("Index");
+                        
                     }
                     else
                     {
@@ -79,6 +80,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
                         return View();
 
                     }
+                     
                 }
 
 

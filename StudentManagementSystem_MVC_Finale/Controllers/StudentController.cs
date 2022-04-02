@@ -9,6 +9,7 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using StudentManagementSystem_Web_API_Finale.Models;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace StudentManagementSystem_MVC_Finale.Controllers
 {
@@ -68,7 +69,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
             {
 
                 StringContent content = new StringContent(JsonConvert.SerializeObject(enrollment), Encoding.UTF8, "application/json");
-                string endpoint = this.Baseurl + "api/Enrollment/" ;
+                string endpoint = this.Baseurl + "api/Enrollment/";
                 using (var Response = await client.PostAsync(endpoint, content))
                 {
                     if (Response.IsSuccessStatusCode)
@@ -119,7 +120,66 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
 
         }
 
-        
+        //PUT - StudentController
+        //get data to edit student details
+        [HttpGet]
+        public async Task<ActionResult> Edit()
+        {
+            List<StudentRegistration> PInfo = new List<StudentRegistration>();
+
+            using (var client = new HttpClient())
+            {
+                //Passing service base url
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var x = HttpContext.Session.GetString("username").ToString();
+                HttpResponseMessage Res = await client.GetAsync("api/student/" + x);
+                //HttpResponseMessage Res1 = await client.GetAsync("api/HospitalEmploy/" + id);
+
+                if (Res.IsSuccessStatusCode)
+                {
+
+                    var Response = Res.Content.ReadAsStringAsync().Result;
+
+                    PInfo = JsonConvert.DeserializeObject<List<StudentRegistration>>(Response);
+                }
+                return View(PInfo);
+            }
+
+        }
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(byte id, StudentRegistration studentRegistration)
+        {
+
+            using (HttpClient client = new HttpClient())
+            {
+
+                StringContent content = new StringContent(JsonConvert.SerializeObject(studentRegistration), Encoding.UTF8, "application/json");
+                string endpoint = this.Baseurl + "api/Student/putstudent/" + id;
+                using (var Response = await client.PutAsync(endpoint, content))
+                {
+                    if (Response.IsSuccessStatusCode)
+                    {
+                        TempData["StudentRegistration"] = JsonConvert.SerializeObject(studentRegistration);
+
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.Clear();
+                        ModelState.AddModelError(string.Empty, "Could not update course");
+                        return View();
+                    }
+                }
+            }
+        }
+
     }
 
 }

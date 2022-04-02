@@ -17,7 +17,7 @@ namespace StudentManagementSystem_MVC_Finale.Data
 
         public DbSet<StudentManagementSystem_Web_API_Finale.Models.College> College { get; set; }
 
-        public DbSet<StudentManagementSystem_Web_API_Finale.Models.StudentRegistration> StudentRegistration { get; set; }
+        public DbSet<StudentManagementSystem_MVC_Finale.Models.StudentRegistration> StudentRegistration { get; set; }
 
         public DbSet<StudentManagementSystem_Web_API_Finale.Models.Enrollment> Enrollment { get; set; }
 
