@@ -61,7 +61,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
         {
             Random random = new Random();
             enrollment.Id = random.Next(100, 1000);
-            enrollment.StudentId = 12;
+            enrollment.StudentId = 5;
             enrollment.CourseId = id;
             enrollment.CreatedDate = DateTime.Now;
 
@@ -103,7 +103,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
                 //Define request data format
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient
-                
+                /*var x = HttpContext.Session.GetString("username").ToString();*/
                 HttpResponseMessage Res = await client.GetAsync("api/courses");
                 //Checking the response is successful or not which is sent using HttpClient
                 if (Res.IsSuccessStatusCode)
@@ -124,7 +124,7 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
         //PUT - StudentController
         //get data to edit student details
         [HttpGet]
-        public async Task<ActionResult> Edit()
+        public async Task<ActionResult> MyProfile()
         {
             List<StudentRegistration> PInfo = new List<StudentRegistration>();
 
@@ -152,6 +152,34 @@ namespace StudentManagementSystem_MVC_Finale.Controllers
         }
 
 
+        [HttpGet]
+
+        public async Task<ActionResult> Edit(byte id)
+        {
+            StudentRegistration PInfo = new StudentRegistration();
+
+            using (var client = new HttpClient())
+            {
+                //Passing service base url
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                
+                HttpResponseMessage Res = await client.GetAsync("api/Student/" + id);
+                //HttpResponseMessage Res1 = await client.GetAsync("api/HospitalEmploy/" + id);
+
+                if (Res.IsSuccessStatusCode)
+                {
+
+                    var Response = Res.Content.ReadAsStringAsync().Result;
+
+                    PInfo = JsonConvert.DeserializeObject<StudentRegistration>(Response);
+                }
+                return View(PInfo);
+            }
+
+        }
 
 
         [HttpPost]
